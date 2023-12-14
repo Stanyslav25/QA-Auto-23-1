@@ -7,15 +7,13 @@ import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.BasePage;
-import pages.HomePage;
-
 import java.time.Duration;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BaseTest {
 
     public static final String URL = "https://demoqa.com/";
-    public WebDriver driver;
+    public WebDriver driver = null;
 
     BasePage basePage;
 
@@ -24,7 +22,7 @@ public class BaseTest {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
-        basePage = new HomePage(driver);
+        basePage = new BasePage(driver);
     }
 
     @BeforeEach
