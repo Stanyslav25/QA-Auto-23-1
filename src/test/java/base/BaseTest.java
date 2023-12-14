@@ -6,27 +6,31 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.FunctionsPage;
+import pages.BasePage;
 import pages.HomePage;
+
+import java.time.Duration;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BaseTest {
 
+    public static final String URL = "https://demoqa.com/";
     public WebDriver driver;
-    public HomePage homePage;
-    public FunctionsPage funkPage;
+
+    BasePage basePage;
 
     @BeforeAll
     public void setup(){
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
-        homePage = new HomePage(driver);
-        funkPage = new FunctionsPage(driver);
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+        basePage = new HomePage(driver);
     }
 
     @BeforeEach
     public void start(){
         driver.get("https://demoqa.com/");
+//        driver.navigate().to(URL + "elements");
     }
 
     @AfterEach

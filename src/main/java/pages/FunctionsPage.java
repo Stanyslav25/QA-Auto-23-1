@@ -2,13 +2,15 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
-public class FunctionsPage {
+public class FunctionsPage extends BasePage{
     WebDriver driver;
 
     By textBox = By.cssSelector("li[class = 'btn btn-light '][id='item-0']");
     public FunctionsPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
+        PageFactory.initElements(driver,this);
     }
 
     public FunctionsPage clickTextBox() {
@@ -18,7 +20,6 @@ public class FunctionsPage {
     }
 
     public void clickNameField(){
-
     }
 
 }

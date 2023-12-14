@@ -2,28 +2,37 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class HomePage {
-    WebDriver driver;
-    WebDriverWait wait;
+public class HomePage extends BasePage {
+    protected WebDriverWait wait;
+    private By element = By.cssSelector("div[class='card mt-4 top-card']");
+
+    @FindBy(how=How.CSS, using = "div[class='card mt-4 top-card']")
+    WebElement elementsTab;
 
     public HomePage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
+        PageFactory.initElements(driver,this);
     }
 
-    private By element = By.cssSelector("div[class='card mt-4 top-card']");
-//    List<WebElement> elements = (List<WebElement>) By.cssSelector("div[class='card mt-4 top-card']");
-
-    public FunctionsPage clickOnElements(){
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(element)));
+    public void clickOnElements(){
+//        waitForElementToAppear(element);
+//        wait.until(ExpectedConditions.visibilityOf(elementsTab));
         driver.findElement(element).click();
-        return new FunctionsPage(driver);
     }
 
+    public void waitForElementsTab() {
+        waitForElementToAppear(element);
+    }
 
 
 }
