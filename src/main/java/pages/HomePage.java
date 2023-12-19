@@ -4,32 +4,29 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.PageFactory;
 
-public class HomePage extends BasePage {
-    protected WebDriverWait wait;
+import java.time.Duration;
+
+
+public class HomePage{
+    private WebDriver driver;
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
     private By element = By.cssSelector("div[class='card mt-4 top-card']");
-    @FindBy(how=How.CSS, using = "div[class='card mt-4 top-card']")
+    @FindBy(css = "div[class='card mt-4 top-card']")
     WebElement elementsTab;
 
-    public HomePage(WebDriver driver) {
-        super(driver);
-    }
-
-    public void clickOnElements(){
-        waitForElementToAppear(element);
+    public void clickOnElements() {
         driver.findElement(element).click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
-    @Override
-    protected void waitForElementToAppear(By locator) {
-        super.waitForElementToAppear(locator);
+    public void clickOnElementsFindBy() {
+        elementsTab.click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
-
-    public void waitForElementsTab() {
-        waitForElementToAppear(element);
-    }
-
-
 }
