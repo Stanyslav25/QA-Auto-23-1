@@ -14,6 +14,5 @@ public class AlertsTest extends BaseTest {
         alertsAndFrames.chooseAlertsTab();
         alertsAndFrames.triggerAlert();
         alertsAndFrames.acceptAlert();
-
     }
 }

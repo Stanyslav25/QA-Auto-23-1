@@ -27,6 +27,9 @@ public class HomePage extends BasePage {
     List<WebElement> elements;
     @FindBy(xpath = "//h5[text()='Alerts, Frame & Windows']/ancestor::div[@class='card mt-4 top-card']")
     WebElement tileAlertsAndFrame;
+    @FindBy(xpath = "//*[text()='Book Store Application']/ancestor::div[@class='card mt-4 top-card']")
+    WebElement tileBookStore;
+
     public void clickOnElements() {
         driver.findElement(element).click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -42,6 +45,11 @@ public class HomePage extends BasePage {
         for(WebElement el : elements){
             System.out.println(el.getText() + " is displayed:" + el.isDisplayed());
         }
+    }
+
+    public void clickBookStoreTile() {
+        waitForVisible(tileBookStore);
+        tileBookStore.click();
     }
 
     public FunctionsPage clickOnTileForms() {

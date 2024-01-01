@@ -4,11 +4,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.base.BasePage;
-
-import java.time.Duration;
 
 public class AlertsAndFrames extends BasePage {
     public AlertsAndFrames(WebDriver driver) {
@@ -35,5 +31,8 @@ public class AlertsAndFrames extends BasePage {
         alert.accept();
     }
 
+    public void getText(Alert alert)  {
+        alert.getText();
+    }
 
 }
