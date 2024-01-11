@@ -1,4 +1,4 @@
-package pages.base;
+package org.pages.base;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;

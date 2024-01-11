@@ -1,10 +1,10 @@
-package pages.myPages;
+package org.pages.myPages;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.base.BasePage;
+import org.pages.base.BasePage;
 
 public class AlertsAndFrames extends BasePage {
     public AlertsAndFrames(WebDriver driver) {

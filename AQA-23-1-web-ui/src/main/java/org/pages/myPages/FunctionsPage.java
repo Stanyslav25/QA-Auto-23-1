@@ -1,11 +1,11 @@
-package pages.myPages;
+package org.pages.myPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import pages.base.BasePage;
+import org.pages.base.BasePage;
+
 
 public class FunctionsPage extends BasePage {
     public FunctionsPage(WebDriver driver) {

@@ -1,15 +1,14 @@
-package pages.myPages;
+package org.pages.myPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.base.BasePage;
-import pages.myPages.FunctionsPage;
+
 
 import java.time.Duration;
 import java.util.List;
-
+import org.pages.base.BasePage;
 
 public class HomePage extends BasePage {
     public HomePage(WebDriver driver) {

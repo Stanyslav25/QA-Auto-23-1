@@ -2,8 +2,9 @@ package webuitests;
 
 import base.BaseTest;
 import org.junit.jupiter.api.Test;
-import pages.myPages.FunctionsPage;
-import pages.myPages.HomePage;
+import org.pages.myPages.FunctionsPage;
+import org.pages.myPages.HomePage;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 public class HomePageNavigationTest extends BaseTest {
     HomePage homePage = new HomePage(driver);

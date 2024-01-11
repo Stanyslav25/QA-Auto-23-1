@@ -2,8 +2,9 @@ package webuitests;
 
 import base.BaseTest;
 import org.junit.jupiter.api.Test;
-import pages.myPages.AlertsAndFrames;
-import pages.myPages.HomePage;
+import org.pages.myPages.AlertsAndFrames;
+import org.pages.myPages.HomePage;
+
 
 public class AlertsTest extends BaseTest {
     AlertsAndFrames alertsAndFrames = new AlertsAndFrames(driver);
