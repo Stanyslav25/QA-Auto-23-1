@@ -23,8 +23,8 @@ public class AuthTest extends BaseConstructor {
         ExtractableResponse<Response> resp = getBooksForUser(token, BASE_USER_ID);
         assertTrue(resp.body().jsonPath().get("books.isbn[0]").equals("9781449325862"));
         assertThat(resp.body().jsonPath().getList("books.isbn"),
-                allOf(hasItem("9781449325862"),hasItem("9781449337711")));
+                allOf(hasItem("9781449325862"),hasItem("9781449337711"))); //Check that list of ISBN contains propper values
         assertThat((Map<String,String>) resp.body().jsonPath().getList("books").get(0),
-                allOf(hasKey("isbn"), hasKey("title")));
+                allOf(hasKey("isbn"), hasKey("title"))); // Check keys in JSON object after cast to Map object
     }
 }
