@@ -42,7 +42,8 @@ public class BaseConstructor {
                 .log().all()
                 .when()
                 .get(ACCOUNT_V1_USER_ENDPOINT + userId)
-                .then().log().all().extract();
+                .then()
+                .log().all().extract();
     }
 
     public RequestSpecification getSpecWithAuth(String bearerToken) {
