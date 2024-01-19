@@ -3,7 +3,7 @@
   "username": "StasUser1",
   "books": [
     {
-      "isbn": "9781449325862",
+      "isbn": "%1$s",
       "title": "Git Pocket Guide",
       "subTitle": "A Working Introduction",
       "author": "Richard E. Silverman",
