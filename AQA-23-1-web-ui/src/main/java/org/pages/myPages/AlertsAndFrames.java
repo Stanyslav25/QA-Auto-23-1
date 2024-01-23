@@ -31,8 +31,8 @@ public class AlertsAndFrames extends BasePage {
         alert.accept();
     }
 
-    public void getText(Alert alert)  {
-        alert.getText();
+    public String getText()  {
+        return driver.switchTo().alert().getText();
     }
 
 }

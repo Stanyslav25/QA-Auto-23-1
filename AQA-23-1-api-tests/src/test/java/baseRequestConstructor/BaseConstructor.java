@@ -1,18 +1,26 @@
 package baseRequestConstructor;
 
+import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.BeforeAll;
+
+import java.util.Map;
 
 import static baseRequestConstructor.JsonConstructor.getLoginBodyForAccount;
 import static baseRequestConstructor.JsonConstructor.getLoginBodyStasUser1;
 import static io.restassured.RestAssured.given;
-import static utils.UrlsList.ACCOUNT_LOGIN_ENDPOINT;
-import static utils.UrlsList.ACCOUNT_V1_USER_ENDPOINT;
+import static utils.UrlsList.*;
 
 public class BaseConstructor {
+    @BeforeAll
+    public static void setBaseUrl() {
+        RestAssured.baseURI = "https://demoqa.com";
+        RestAssured.given(getSpecWithoutAuth());
+    }
+
     public String getTokenForBaseUser() {
         ExtractableResponse<Response> response =
                 postLoginMethod(getLoginBodyStasUser1());
@@ -33,15 +41,13 @@ public class BaseConstructor {
                 .log()
                 .all()
                 .when()
-                .post(ACCOUNT_LOGIN_ENDPOINT)
+                .post(BASE_ACCOUNT + ACCOUNT_LOGIN_ENDPOINT)
                 .then().log().all().extract();
     }
 
     //Get all user`s books list
     public ExtractableResponse<Response> getBooksForUser(String token, String userId) {
-        return given()
-                .spec(getSpecWithAuth(token)) // Add specification for request like header or cookies
-                .log().all()
+        return requestWithAuth(token)
                 .when()
                 .get(ACCOUNT_V1_USER_ENDPOINT + userId)
                 .then()
@@ -50,8 +56,13 @@ public class BaseConstructor {
 
     public RequestSpecification getSpecWithAuth(String bearerToken) {
         RequestSpecBuilder specBuilder = new RequestSpecBuilder();
-        specBuilder.addHeader("Content-Type", "application/json");
         specBuilder.addHeader("Authorization", "Bearer " + bearerToken);
+        return specBuilder.build();
+    }
+
+    public static RequestSpecification getSpecWithoutAuth() {
+        RequestSpecBuilder specBuilder = new RequestSpecBuilder();
+        specBuilder.addHeader("Content-Type", "application/json");
         return specBuilder.build();
     }
 
@@ -65,9 +76,7 @@ public class BaseConstructor {
     }
 
     public ExtractableResponse<Response> deleteUserById(String userId, String token) {
-        return given()
-                .spec(getSpecWithAuth(token)) // Add specification for request like header or cookies
-                .log().all()
+        return  requestBase(getSpecWithAuth(token))
                 .when()
                 .delete(ACCOUNT_V1_USER_ENDPOINT + userId)
                 .then()
@@ -83,6 +92,21 @@ public class BaseConstructor {
                 .when()
                 .post("https://demoqa.com/Account/v1/GenerateToken")
                 .then().log().all().extract();
+    }
+
+    protected RequestSpecification requestBase(RequestSpecification specification) {
+        return given().spec(specification).log().all();
+    }
+
+    protected RequestSpecification requestGivenLogAll() {
+        return given().log().all();
+    }
+    protected RequestSpecification requestWithAuth(String token) {
+        return requestGivenLogAll()
+                .queryParams(Map.of(
+                        "Content-Type", "application/json",
+                        "token", token
+                ));
     }
 
 

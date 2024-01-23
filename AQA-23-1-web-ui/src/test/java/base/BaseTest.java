@@ -3,12 +3,14 @@ package base;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.events.EventFiringDecorator;
+import utils.Listener;
 
 import java.time.Duration;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BaseTest {
-    public WebDriver driver = new ChromeDriver();
+    public WebDriver driver = new EventFiringDecorator<>(new Listener()).decorate(new ChromeDriver());
     @BeforeAll
     public void setup(){
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));

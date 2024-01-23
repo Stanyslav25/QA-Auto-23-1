@@ -22,13 +22,14 @@ import static utils.TestUsers.BASE_USER_ID;
 
 public class AuthTest extends BaseConstructor {
 
-    String userName = "Stas12332154";
+    String userName = "Stas123321545";
     String pass = "P@ssword1";
 
     String userId;
 
     @Test
     public void getUserBooksAfterAuth() throws JSONException {
+        generateToken(userName, pass);
         ExtractableResponse<Response> extResp =
                 getBooksForUser(getTokenForBaseUser(), BASE_USER_ID);
         assertEquals(HttpStatus.SC_OK, extResp.statusCode());
