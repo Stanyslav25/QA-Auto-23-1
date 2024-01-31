@@ -11,6 +11,7 @@
     <modules>
         <module>AQA-23-1-web-ui</module>
         <module>AQA-23-1-api-tests</module>
+        <module>aqa-23-1-playwright</module>
     </modules>
 
     <properties>
