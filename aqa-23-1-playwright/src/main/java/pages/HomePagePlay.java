@@ -2,7 +2,12 @@ package pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.LoadState;
+
+import java.util.regex.Pattern;
+
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class HomePagePlay {
     private final Page homePage;
@@ -25,7 +30,15 @@ public class HomePagePlay {
     }
 
     public void clickAlertsTab() {
+        openUrl();
         homePage.waitForLoadState(LoadState.DOMCONTENTLOADED);
         tileAlerts.click();
+    }
+
+    public void verifyURLForAlertsTab(Pattern pattern) {
+        PlaywrightAssertions.setDefaultAssertionTimeout(30000);
+        assertThat(homePage).hasURL(pattern);
+        homePage.waitForLoadState(LoadState.DOMCONTENTLOADED);
+        PlaywrightAssertions.setDefaultAssertionTimeout(5000);
     }
 }
