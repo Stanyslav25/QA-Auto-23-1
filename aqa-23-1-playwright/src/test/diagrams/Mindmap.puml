@@ -1,0 +1,32 @@
+@startmindmap
+'https://plantuml.com/mindmap-diagram
+
+caption figure 1
+title My super title
+
+* <&flag>Debian
+** Hello\n New row
+**[#Green] <&globe>Ubuntu
+***[#Orange] Linux Mint
+
+* <i>Kubuntu
+** <b><i>Lubuntu
++++ KDE Neon
+** <&graph>LMDE
+left side
+** <&pulse>SolydXK
+** <&people>SteamOS
+** <&star>Raspbian with a very long name
+** <s>Raspmbc</s> => OSMC
+** <s>Raspyfi</s> => Volumio
+** Hello ubuntu
+
+header
+My super header
+endheader
+center footer My super footer
+legend right
+  Short
+  legend
+endlegend
+@endmindmap

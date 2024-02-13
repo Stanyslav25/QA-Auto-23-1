@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+participant Participant as p #green
+actor Alice as a #red
+actor Bob as b
+database DB as d
+a -> b: Authentication Request
+b --> d: Write operation
+a -[#red]> b: Another authentication Request
+p -[#0000FF]-> a: Info
+p <- a
+a <-- b: another authentication Response
+@enduml

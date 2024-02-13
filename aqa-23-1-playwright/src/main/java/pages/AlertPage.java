@@ -25,7 +25,7 @@ public class AlertPage {
     }
 
     public void alertSubmit() {
-        alertsPage.onDialog(dialog -> {
+        alertsPage.onceDialog(dialog -> {
             assertEquals("alert", dialog.type());
             assertEquals("You clicked a button", dialog.message());
             System.out.println("Alert was accepted");
@@ -37,6 +37,7 @@ public class AlertPage {
     public void clickPromptButton(String promptText) {
         alertsPage.onDialog(dialog -> {
             assertEquals("prompt", dialog.type());
+            alertsPage.onceDialog(alert -> alert.accept());
             dialog.accept(promptText);
             System.out.println("Alert with prompt was accepted");
         });

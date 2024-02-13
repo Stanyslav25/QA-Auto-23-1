@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Login as valid user;
+fork
+ :Login as regular user;
+note right
+ Hello login
+end note
+ #red:Start page for user opened
+ ----
+ Next line
+ ;
+
+ note left
+  Step open start page
+  ----
+  Next line
+ end note
+ :Assert main elements visibility;
+ fork again
+ :Login as Admin;
+ :Start page for admin opened;
+end fork
+:Open profile;
+
+fork
+:User has user fields;
+:TC1;
+fork again
+:Admin has admin fields;
+:TC2;
+end fork
+:Test passed;
+end
+
+@enduml
