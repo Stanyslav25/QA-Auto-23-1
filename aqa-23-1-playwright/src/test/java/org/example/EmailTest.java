@@ -29,7 +29,7 @@ public class EmailTest extends BaseTestRunner {
         page.navigate(linkFromEmail);
         assertEquals(linkFromEmail, "https://soundmag.ua/");
         emailId = emailClient.getEmailIdBySentTo(emailSendTo);
-        System.out.println(AnsiColors.ANSI_GREEN.getCode()+emailId+ANSI_RESET);
+        System.out.println(AnsiColors.ANSI_GREEN.getCode() + emailId + ANSI_RESET.getCode());
         emailClient.deleteMessagesById(emailId);
     }
 }
